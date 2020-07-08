@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 using BazaarPlugin;
 
 public partial class BazaarIAPManager : MonoBehaviour, IIAPManager {
-    public void Init(string key) {
-        BazaarIAB.init(key);
+    public void Init() {
+        IAPConstData.SetStoreKey(Store.Bazaar);
+        BazaarIAB.init(IAPConstData.Key);
     }
     
     public void QuaryInventory(string[] skus) {

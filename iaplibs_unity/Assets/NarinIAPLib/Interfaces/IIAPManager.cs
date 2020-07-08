@@ -1,10 +1,9 @@
-﻿using System;
-using System.Diagnostics.Tracing;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using UnityEngine.PlayerLoop;
 
 namespace Narin.Unity.IAP {
     public interface IIAPManager {
-        void Init(string key);
+        void Init();
         void PurchaseProduct(string sku);
         void ConsumeProduct(string sku);
         void QuarySkuInfo(string[] sku);
