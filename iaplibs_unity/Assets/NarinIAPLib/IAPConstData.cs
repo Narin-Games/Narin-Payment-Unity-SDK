@@ -25,13 +25,13 @@ namespace Narin.Unity.IAP {
         #endif
 
         //Define products with different id per store
-        public static SkuBase SpecialOffer {get {return _sepecialOffer[_selectedKey]; } }
-        private static readonly Dictionary<Store, SkuBase> _sepecialOffer = new Dictionary<Store, SkuBase>() {
-             {Store.Bazaar  , new SkuBase("SpecialOfferBazaar"  , ProductType.Consumable)}
-            ,{Store.Myket   , new SkuBase("SpecialOfferMyket"   , ProductType.Consumable)}
+        public static ProductBase SpecialOffer {get {return _sepecialOffer[_selectedKey]; } }
+        private static readonly Dictionary<Store, ProductBase> _sepecialOffer = new Dictionary<Store, ProductBase>() {
+             {Store.Bazaar  , new ProductBase("SpecialOfferBazaar"  , ProductType.Consumable)}
+            ,{Store.Myket   , new ProductBase("SpecialOfferMyket"   , ProductType.Consumable)}
         };
 
         //Define products for all store
-        public static readonly SkuBase GemPackage100 = new SkuBase("", ProductType.Consumable);
+        public static readonly ProductBase GemPackage100 = new ProductBase("", ProductType.Consumable);
     }
 }

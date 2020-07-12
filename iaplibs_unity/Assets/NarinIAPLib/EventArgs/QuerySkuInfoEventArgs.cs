@@ -4,9 +4,9 @@ using System.Collections.Generic;
 namespace Narin.Unity.IAP {
 
     public class QuerySkuInfoEventArgs: EventArgs {
-        List<SkuInfo> SkusInfo;
+        List<ProductDetail> SkusInfo;
 
-        public QuerySkuInfoEventArgs(List<SkuInfo> skusInfo) {
+        public QuerySkuInfoEventArgs(List<ProductDetail> skusInfo) {
             SkusInfo = skusInfo;
         }
     }

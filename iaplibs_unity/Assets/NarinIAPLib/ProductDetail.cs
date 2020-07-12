@@ -1,12 +1,12 @@
 ﻿namespace Narin.Unity.IAP {
 
-    public class SkuInfo: SkuBase {
+    public class ProductDetail: ProductBase {
         public readonly string Price;
         public readonly string Title;
         public readonly string Description;
         public readonly string CurrencyCode;
 
-        public SkuInfo(
+        public ProductDetail(
               string productId
             , string price
             , string title

@@ -1,4 +1,6 @@
-﻿namespace Narin.Unity.IAP {
+﻿using System.Collections.Generic;
+
+namespace Narin.Unity.IAP {
 
     public enum ProductType {
          NotDefined     = -1
@@ -7,14 +9,13 @@
         ,Subscription   = 2
     }
 
-    public class SkuBase {
+    public class ProductBase {
         public readonly string ProductId;
         public readonly ProductType Type;
 
-        public SkuBase(string productId, ProductType type) {
+        public ProductBase(string productId, ProductType type) {
             ProductId = productId;
             Type = type;
         }
     }
-
 }
