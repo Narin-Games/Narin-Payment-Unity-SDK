@@ -4,11 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using BazaarPlugin;
 using System;
+using System.Runtime.CompilerServices;
+using System.CodeDom;
+using System.Linq;
 
 namespace Narin.Unity.IAP {
     public partial class IAPBuilder {
 
-        private class BazaarIAPManager : MonoBehaviour, IIAPManager {
+        private class BazaarIAPManager : SingletonMono<BazaarIAPManager>, IIAPManager {
             public event EventHandler<EventArgs>                OnPurchaseSupported;
             public event EventHandler<ErrorEventArgs>           OnPurchaseNotSupported;
             public event EventHandler<PurchaseEventArgs>        OnPurchaseSucceeded;
@@ -21,8 +24,7 @@ namespace Narin.Unity.IAP {
             public event EventHandler<ErrorEventArgs>           OnRetriveFailedPurchasesFailed;
 
             private string _publicKey;
-            private List<ProductBase> _products;
-            private bool _isInitialized = false;
+            private Dictionary<string, ProductBase> _products;
 
             void OnEnable() {
                 IABEventManager.billingSupportedEvent           += BillingSupportedEventHandler;
@@ -50,9 +52,9 @@ namespace Narin.Unity.IAP {
                 IABEventManager.queryPurchasesFailedEvent       -= QueryPurchasesFailedEventHandler;
             }
 
-            public void SetData(string publicKey, ProductBase[] products) { 
-                _publicKey = publicKey;
-                _products = new List<ProductBase>(products);
+            public void SetData(string publicKey, Dictionary<string, ProductBase> products) { 
+                _publicKey  = publicKey;
+                _products   = products;
             }
 
             #region _iap_api_
@@ -60,20 +62,16 @@ namespace Narin.Unity.IAP {
                 BazaarIAB.init(_publicKey);
             }
 
-            public void QuaryInventory(string[] skus) {
-                BazaarIAB.queryInventory(skus);
+            public void PurchaseProduct(string productId) {
+                BazaarIAB.purchaseProduct(FilterAlias(productId));
             }
         
-            public void PurchaseProduct(string sku) {
-                BazaarIAB.purchaseProduct(sku);
+            public void ConsumeProduct(string productId) {
+                BazaarIAB.consumeProduct(FilterAlias(productId));
             }
         
-            public void ConsumeProduct(string sku) {
-                BazaarIAB.consumeProduct(sku);
-            }
-        
-            public void QuerySkuInfo(string[] skus) {
-                BazaarIAB.querySkuDetails(skus);
+            public void QuerySkuInfo(string[] productIds) {
+                BazaarIAB.querySkuDetails(FilterAlias(productIds));
             }
         
             public void RetrieveFailedPurchases() {
@@ -171,6 +169,20 @@ namespace Narin.Unity.IAP {
                 if(typeStr == "Subscription")   ret = ProductType.Subscription;
 
                 return ret;
+            }
+
+            private string FilterAlias(string productId) {
+                return _products[productId].ProductId;
+            }
+
+            private string[] FilterAlias(string[] productIds) {
+                List<string> ret = new List<string>(productIds.Length);
+
+                foreach(string pid in productIds) {
+                    ret.Add(_products[pid].ProductId);
+                }
+
+                return ret.ToArray();
             }
         }
     }

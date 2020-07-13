@@ -539,7 +539,7 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLWasmStreaming: 0
   scriptingDefineSymbols:
-    7: _dev_
+    7: _cafebazaar_
   platformArchitecture: {}
   scriptingBackend: {}
   il2cppCompilerConfiguration: {}

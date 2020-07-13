@@ -10,8 +10,7 @@ using System;
 
 namespace Narin.Unity.IAP {
     public partial class IAPBuilder {
-        private class GoogleplayIAPManager : MonoBehaviour, IIAPManager, IStoreListener {
-            private object _lockObject = new object();
+        private class GooglePlayIAPManager : SingletonMono<GooglePlayIAPManager>, IIAPManager, IStoreListener {
     
             public event EventHandler<EventArgs>                OnPurchaseSupported;
             public event EventHandler<ErrorEventArgs>           OnPurchaseNotSupported;
@@ -23,7 +22,7 @@ namespace Narin.Unity.IAP {
             public event EventHandler<ErrorEventArgs>           OnConsumeFailed;
             public event EventHandler<EventArgs>                OnRetriveFailedPurchasesSucceeded;
             public event EventHandler<ErrorEventArgs>           OnRetriveFailedPurchasesFailed;
-    
+            
             // This implementation just for implementing two 
             // interface (IStoreListener, IIAPEventManager) with 
             // same methods name (event and method)
@@ -41,16 +40,21 @@ namespace Narin.Unity.IAP {
                 }
             }
 
-            private List<ProductBase> _products;
+            private Dictionary<string, ProductBase> _products;
             private static uiap.IStoreController _storeController;
             private static uiap.IExtensionProvider _storeExtensionProvider;
+            private object _lockObject = new object();
+
+            public void SetData(Dictionary<string, ProductBase> products) {
+                _products = products;
+            }
 
             #region iap_api
             public void Init() {
                 if(IsInitialized()) return;
                 var builder = uiap.ConfigurationBuilder.Instance(uiap.StandardPurchasingModule.Instance());
                 
-                foreach(var p in _products) {
+                foreach(var p in _products.Values) {
                     builder.AddProduct(p.ProductId, ConvertProductType(p.Type));
                 }
 
@@ -58,10 +62,12 @@ namespace Narin.Unity.IAP {
             }
         
             public void QuerySkuInfo(string[] productIds) {
-                var queryArg = new List<ProductDetail>(productIds.Length);
+                string[] filteredProductIds = FilterAlias(productIds);
 
-                foreach (string pid in productIds) {
-                    var p = _storeController.products.WithID(pid);
+                var queryArg = new List<ProductDetail>(filteredProductIds.Length);
+
+                foreach (string fpid in filteredProductIds) {
+                    var p = _storeController.products.WithID(fpid);
                     queryArg.Add(new ProductDetail(
                          p.definition.id
                         ,p.metadata.localizedPriceString
@@ -77,7 +83,7 @@ namespace Narin.Unity.IAP {
         
             public void PurchaseProduct(string productId) {
                 if (IsInitialized()) {
-                    Product product = _storeController.products.WithID(productId);
+                    Product product = _storeController.products.WithID(FilterAlias(productId));
 
                     if (product != null && product.availableToPurchase) {
                         Debug.Log(string.Format("Purchasing product asychronously: '{0}'", product.definition.id));
@@ -90,7 +96,7 @@ namespace Narin.Unity.IAP {
             }
         
             public void ConsumeProduct(string productId) {
-                var p = _storeController.products.WithID(productId);
+                var p = _storeController.products.WithID(FilterAlias(productId));
                 _storeController.ConfirmPendingPurchase(p);
 
                 OnConsumeSucceeded(this, new PurchaseEventArgs(
@@ -109,21 +115,25 @@ namespace Narin.Unity.IAP {
 
             #region _event_listeners_
             public void OnInitialized(IStoreController controller, IExtensionProvider extensions) {
-                OnPurchaseSupported(this, new EventArgs());
+                if(null != OnPurchaseSupported)
+                    OnPurchaseSupported(this, new EventArgs());
             }
     
             public void OnInitializeFailed(InitializationFailureReason error) {
-                OnPurchaseNotSupported(this, new ErrorEventArgs(error.ToString()));
+                if(null != OnPurchaseNotSupported)
+                    OnPurchaseNotSupported(this, new ErrorEventArgs(error.ToString()));
             }
 
             public PurchaseProcessingResult ProcessPurchase(uiap.PurchaseEventArgs purchase) {
-                 OnPurchaseSucceeded(this, new PurchaseEventArgs(
-                      string.Empty
-                     ,purchase.purchasedProduct.metadata.localizedTitle
-                     ,purchase.purchasedProduct.definition.id
-                     ,purchase.purchasedProduct.transactionID
-                     ,ConvertProductType(purchase.purchasedProduct.definition.type)
-                     ));
+
+                 if(null != OnPurchaseSucceeded)
+                    OnPurchaseSucceeded(this, new PurchaseEventArgs(
+                         string.Empty
+                        ,purchase.purchasedProduct.metadata.localizedTitle
+                        ,purchase.purchasedProduct.definition.id
+                        ,purchase.purchasedProduct.transactionID
+                        ,ConvertProductType(purchase.purchasedProduct.definition.type)
+                        ));
 
                 return PurchaseProcessingResult.Pending;
             }
@@ -155,6 +165,20 @@ namespace Narin.Unity.IAP {
 
             private bool IsInitialized() {
                 return _storeController != null && _storeExtensionProvider != null;
+            }
+
+            private string FilterAlias(string productId) {
+                return _products[productId].ProductId;
+            }
+
+            private string[] FilterAlias(string[] productIds) {
+                List<string> ret = new List<string>(productIds.Length);
+
+                foreach(string pid in productIds) {
+                    ret.Add(_products[pid].ProductId);
+                }
+
+                return ret.ToArray();
             }
         }
     }

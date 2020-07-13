@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine.PlayerLoop;
 
 namespace Narin.Unity.IAP {
+    public enum Store {
+         Bazaar
+        ,Myket
+        ,Googleplay
+    }
+
     public interface IIAPManager {
         event EventHandler<EventArgs>               OnPurchaseSupported;
         event EventHandler<ErrorEventArgs>          OnPurchaseNotSupported;
