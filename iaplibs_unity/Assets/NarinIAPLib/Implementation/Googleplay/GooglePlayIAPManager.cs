@@ -62,6 +62,8 @@ namespace Narin.Unity.IAP {
             }
         
             public void QuerySkuInfo(string[] productIds) {
+                if(!IsInitialized()) return;
+
                 string[] filteredProductIds = FilterAlias(productIds);
 
                 var queryArg = new List<ProductDetail>(filteredProductIds.Length);
@@ -96,6 +98,8 @@ namespace Narin.Unity.IAP {
             }
         
             public void ConsumeProduct(string productId) {
+                if(!IsInitialized()) return;
+
                 var p = _storeController.products.WithID(FilterAlias(productId));
                 _storeController.ConfirmPendingPurchase(p);
 
@@ -117,6 +121,9 @@ namespace Narin.Unity.IAP {
             public void OnInitialized(IStoreController controller, IExtensionProvider extensions) {
                 if(null != OnPurchaseSupported)
                     OnPurchaseSupported(this, new EventArgs());
+
+                _storeController = controller;
+                _storeExtensionProvider = extensions;
             }
     
             public void OnInitializeFailed(InitializationFailureReason error) {

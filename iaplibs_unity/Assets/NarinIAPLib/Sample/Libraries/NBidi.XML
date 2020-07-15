@@ -1,0 +1,1661 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NBidi</name>
+    </assembly>
+    <members>
+        <member name="T:NBidi.UnicodeGeneralCategory">
+            <summary>
+            Unicode character categories.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeGeneralCategory.Lu">
+            <summary>Letter, Uppercase</summary>
+        </member>
+        <member name="F:NBidi.UnicodeGeneralCategory.Ll">
+            <summary>Letter, Lowercase</summary>
+        </member>
+        <member name="F:NBidi.UnicodeGeneralCategory.Lt">
+            <summary>Letter, Titlecase</summary>
+        </member>
+        <member name="F:NBidi.UnicodeGeneralCategory.Lm">
+            <summary>Letter, Modifier</summary>
+        </member>
+        <member name="F:NBidi.UnicodeGeneralCategory.Lo">
+            <summary>Letter, Other</summary>
+        </member>
+        <member name="F:NBidi.UnicodeGeneralCategory.Mn">
+            <summary>Mark, Nonspacing</summary>
+        </member>
+        <member name="F:NBidi.UnicodeGeneralCategory.Mc">
+            <summary>Mark, Spacing Combining</summary>
+        </member>
+        <member name="F:NBidi.UnicodeGeneralCategory.Me">
+            <summary>Mark, Enclosing</summary>
+        </member>
+        <member name="F:NBidi.UnicodeGeneralCategory.Nd">
+            <summary>Number, Decimal Digit</summary>
+        </member>
+        <member name="F:NBidi.UnicodeGeneralCategory.Nl">
+            <summary>Number, Letter</summary>
+        </member>
+        <member name="F:NBidi.UnicodeGeneralCategory.No">
+            <summary>Number, Other</summary>
+        </member>
+        <member name="F:NBidi.UnicodeGeneralCategory.Pc">
+            <summary>Punctuation, Connector</summary>
+        </member>
+        <member name="F:NBidi.UnicodeGeneralCategory.Pd">
+            <summary>Punctuation, Dash</summary>
+        </member>
+        <member name="F:NBidi.UnicodeGeneralCategory.Ps">
+            <summary>Punctuation, Open</summary>
+        </member>
+        <member name="F:NBidi.UnicodeGeneralCategory.Pe">
+            <summary>Punctuation, Close</summary>
+        </member>
+        <member name="F:NBidi.UnicodeGeneralCategory.Pi">
+            <summary>Punctuation, Initial quote (may behave like Ps or Pe depending on usage)</summary>
+        </member>
+        <member name="F:NBidi.UnicodeGeneralCategory.Pf">
+            <summary>Punctuation, Final quote (may behave like Ps or Pe depending on usage)</summary>
+        </member>
+        <member name="F:NBidi.UnicodeGeneralCategory.Po">
+            <summary>Punctuation, Other</summary>
+        </member>
+        <member name="F:NBidi.UnicodeGeneralCategory.Sm">
+            <summary>Symbol, Math</summary>
+        </member>
+        <member name="F:NBidi.UnicodeGeneralCategory.Sc">
+            <summary>Symbol, Currency</summary>
+        </member>
+        <member name="F:NBidi.UnicodeGeneralCategory.Sk">
+            <summary>Symbol, Modifier</summary>
+        </member>
+        <member name="F:NBidi.UnicodeGeneralCategory.So">
+            <summary>Symbol, Other</summary>
+        </member>
+        <member name="F:NBidi.UnicodeGeneralCategory.Zs">
+            <summary>Separator, Space</summary>
+        </member>
+        <member name="F:NBidi.UnicodeGeneralCategory.Zl">
+            <summary>Separator, Line</summary>
+        </member>
+        <member name="F:NBidi.UnicodeGeneralCategory.Zp">
+            <summary>Separator, Paragraph</summary>
+        </member>
+        <member name="F:NBidi.UnicodeGeneralCategory.Cc">
+            <summary>Other, Control</summary>
+        </member>
+        <member name="F:NBidi.UnicodeGeneralCategory.Cf">
+            <summary>Other, Format</summary>
+        </member>
+        <member name="F:NBidi.UnicodeGeneralCategory.Cs">
+            <summary>Other, Surrogate</summary>
+        </member>
+        <member name="F:NBidi.UnicodeGeneralCategory.Co">
+            <summary>Other, Private Use</summary>
+        </member>
+        <member name="F:NBidi.UnicodeGeneralCategory.Cn">
+            <summary>Other, Not Assigned (no characters in the file have this property)</summary>
+        </member>
+        <member name="T:NBidi.BidiChars">
+            <summary>
+            A set of common Unicode characters, including BiDi control characters, and some Arabic letters used mainly for testing purposes.
+            </summary>
+        </member>
+        <member name="F:NBidi.BidiChars.RLM">
+            <summary>
+            Right-to-Left Mark
+            </summary>
+        </member>
+        <member name="F:NBidi.BidiChars.RLE">
+            <summary>
+            Start of Right-to-Left Embedding
+            </summary>
+        </member>
+        <member name="F:NBidi.BidiChars.RLO">
+            <summary>
+            Start of Right-to-Left Override
+            </summary>
+        </member>
+        <member name="F:NBidi.BidiChars.LRM">
+            <summary>
+            Left-to-Right Mark
+            </summary>
+        </member>
+        <member name="F:NBidi.BidiChars.LRE">
+            <summary>
+            Start of Left-to-Right Embedding
+            </summary>
+        </member>
+        <member name="F:NBidi.BidiChars.LRO">
+            <summary>
+            Start of Left-to-Right Override
+            </summary>
+        </member>
+        <member name="F:NBidi.BidiChars.PDF">
+            <summary>
+            Pop Directional Formatting
+            </summary>
+        </member>
+        <member name="F:NBidi.BidiChars.NotAChar">
+            <summary>
+            A Dummy Character Indicating None.
+            </summary>
+        </member>
+        <member name="F:NBidi.BidiChars.ARABIC_LAM">
+            <summary>
+            Arabic Letter Lam
+            </summary>
+        </member>
+        <member name="F:NBidi.BidiChars.ARABIC_ALEF_MADDA_ABOVE">
+            <summary>
+            Arabic Letter Alef With Madda Above
+            </summary>
+        </member>
+        <member name="F:NBidi.BidiChars.ARABIC_ALEF_HAMZA_ABOVE">
+            <summary>
+            Arabic Letter Alef With Hamza Above
+            </summary>
+        </member>
+        <member name="F:NBidi.BidiChars.ARABIC_ALEF_HAMZA_BELOW">
+            <summary>
+            Arabic Letter Alef With Hamza Below
+            </summary>
+        </member>
+        <member name="F:NBidi.BidiChars.ARABIC_ALEF">
+            <summary>
+            Arabic Letter Alef
+            </summary>
+        </member>
+        <member name="F:NBidi.BidiChars.ARABIC_LAM_ALEF_MADDA_ABOVE_ISOLATED">
+            <summary>
+            Arabic Ligature Lam With Alef With Madda Above Isolated Form
+            </summary>
+        </member>
+        <member name="F:NBidi.BidiChars.ARABIC_LAM_ALEF_MADDA_ABOVE_FINAL">
+            <summary>
+            Arabic Ligature Lam With Alef With Madda Above Final Form
+            </summary>
+        </member>
+        <member name="F:NBidi.BidiChars.ARABIC_LAM_ALEF_HAMZA_ABOVE_ISOLATED">
+            <summary>
+            Arabic Ligature Lam With Alef With Hamza Above Isolated Form
+            </summary>
+        </member>
+        <member name="F:NBidi.BidiChars.ARABIC_LAM_ALEF_HAMZA_ABOVE_FINAL">
+            <summary>
+            Arabic Ligature Lam With Alef With Hamza Above Final Form
+            </summary>
+        </member>
+        <member name="F:NBidi.BidiChars.ARABIC_LAM_ALEF_HAMZA_BELOW_ISOLATED">
+            <summary>
+            Arabic Ligature Lam With Alef With Hamza Below Isolated Form
+            </summary>
+        </member>
+        <member name="F:NBidi.BidiChars.ARABIC_LAM_ALEF_HAMZA_BELOW_FINAL">
+            <summary>
+            Arabic Ligature Lam With Alef With Hamza Below Final Form
+            </summary>
+        </member>
+        <member name="F:NBidi.BidiChars.ARABIC_LAM_ALEF_ISOLATED">
+            <summary>
+            Arabic Ligature Lam With Alef Isolated Form
+            </summary>
+        </member>
+        <member name="F:NBidi.BidiChars.ARABIC_LAM_ALEF_FINAL">
+            <summary>
+            Arabic Ligature Lam With Alef Final Form
+            </summary>
+        </member>
+        <member name="T:NBidi.DirectionalOverrideStatus">
+            <summary>
+            Directional Override Statii used to determine current letter direction (Table 2 in the Unicode BiDi algorithm).
+            </summary>
+        </member>
+        <member name="F:NBidi.DirectionalOverrideStatus.Neutral">
+            <summary>
+            No override is currently active.
+            </summary>
+        </member>
+        <member name="F:NBidi.DirectionalOverrideStatus.RTL">
+            <summary>
+            Characters are to be reset to R.
+            </summary>
+        </member>
+        <member name="F:NBidi.DirectionalOverrideStatus.LTR">
+            <summary>
+            Characters are to be reset to L.
+            </summary>
+        </member>
+        <member name="T:NBidi.ArabicShapeJoiningType">
+            <summary>
+            Letter joining types of Arabic letters.
+            </summary>
+        </member>
+        <member name="F:NBidi.ArabicShapeJoiningType.R">
+            <summary>Right Joining</summary>
+        </member>
+        <member name="F:NBidi.ArabicShapeJoiningType.L">
+            <summary>Left Joining</summary>
+        </member>
+        <member name="F:NBidi.ArabicShapeJoiningType.D">
+            <summary>Dual Joining</summary>
+        </member>
+        <member name="F:NBidi.ArabicShapeJoiningType.C">
+            <summary>Join Causing</summary>
+        </member>
+        <member name="F:NBidi.ArabicShapeJoiningType.U">
+            <summary>Non Joining</summary>
+        </member>
+        <member name="F:NBidi.ArabicShapeJoiningType.T">
+            <summary>Transparent</summary>
+        </member>
+        <member name="T:NBidi.UnicodeDecompositionType">
+            <summary>
+            The type of Unicode character decomposition.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeDecompositionType.None">
+            <summary>A base form or no special variant.</summary>
+        </member>
+        <member name="F:NBidi.UnicodeDecompositionType.Font">
+            <summary>A font variant (e.g. a blackletter form).</summary>
+        </member>
+        <member name="F:NBidi.UnicodeDecompositionType.NoBreak">
+            <summary>A no-break version of a space or hyphen.</summary>
+        </member>
+        <member name="F:NBidi.UnicodeDecompositionType.Initial">
+            <summary>An initial presentation form (Arabic).</summary>
+        </member>
+        <member name="F:NBidi.UnicodeDecompositionType.Medial">
+            <summary>A medial presentation form (Arabic).</summary>
+        </member>
+        <member name="F:NBidi.UnicodeDecompositionType.Final">
+            <summary>A final presentation form (Arabic).</summary>
+        </member>
+        <member name="F:NBidi.UnicodeDecompositionType.Isolated">
+            <summary>An isolated presentation form (Arabic).</summary>
+        </member>
+        <member name="F:NBidi.UnicodeDecompositionType.Circle">
+            <summary>An encircled form.</summary>
+        </member>
+        <member name="F:NBidi.UnicodeDecompositionType.Super">
+            <summary>A superscript form.</summary>
+        </member>
+        <member name="F:NBidi.UnicodeDecompositionType.Sub">
+            <summary>A subscript form.</summary>
+        </member>
+        <member name="F:NBidi.UnicodeDecompositionType.Vertical">
+            <summary>A vertical layout presentation form.</summary>
+        </member>
+        <member name="F:NBidi.UnicodeDecompositionType.Wide">
+            <summary>A wide (or zenkaku) compatibility character.</summary>
+        </member>
+        <member name="F:NBidi.UnicodeDecompositionType.Narrow">
+            <summary>A narrow (or hankaku) compatibility character.></summary>
+        </member>
+        <member name="F:NBidi.UnicodeDecompositionType.Small">
+            <summary>A small variant form (CNS compatibility).</summary>
+        </member>
+        <member name="F:NBidi.UnicodeDecompositionType.Square">
+            <summary>A CJK squared font variant.</summary>
+        </member>
+        <member name="F:NBidi.UnicodeDecompositionType.Fraction">
+            <summary>A vulgar fraction form.</summary>
+        </member>
+        <member name="F:NBidi.UnicodeDecompositionType.Compat">
+            <summary>Otherwise unspecified compatibility character.</summary>
+        </member>
+        <member name="T:NBidi.LetterForm">
+            <summary>
+            The four different available letter presentation forms.
+            </summary>
+        </member>
+        <member name="F:NBidi.LetterForm.Initial">
+            <summary>
+            A presentation form of a letter that begins a sequence of connected letters.
+            </summary>
+        </member>
+        <member name="F:NBidi.LetterForm.Medial">
+            <summary>
+            A presentation form of a letter that is connected to other letters on both sides.
+            </summary>
+        </member>
+        <member name="F:NBidi.LetterForm.Final">
+            <summary>
+            A presentation form of a letter that ends a sequence of connected letters.
+            </summary>
+        </member>
+        <member name="F:NBidi.LetterForm.Isolated">
+            <summary>
+            A presentation form of a letter that is not connected to other letters on either sides.
+            </summary>
+        </member>
+        <member name="M:NBidi.UnicodeCharacterDataResolver.GetBidiCharacterType(System.Char)">
+            <summary>
+            Returns the BiDi type for a given character.
+            </summary>
+            <param name="c">A Unicode character for which to get the BiDi type.</param>
+            <returns>The character BiDi type.</returns>
+        </member>
+        <member name="M:NBidi.UnicodeCharacterDataResolver.GetUnicodeGeneralCategory(System.Char)">
+            <summary>
+            Returns the Unicode category for a given character.
+            </summary>
+            <param name="c">A Unicode character for which to get the general Unicode category.</param>
+            <returns>The character general Unicode category.</returns>
+        </member>
+        <member name="M:NBidi.UnicodeCharacterDataResolver.GetUnicodeCanonicalClass(System.Char)">
+            <summary>
+            Returns the Unicode canonical class for a given character.
+            </summary>
+            <param name="c">A Unicode character for which to get the Unicode canonical class.</param>
+            <returns>The character Unicode canonical class.</returns>
+        </member>
+        <member name="T:NBidi.BidiCharacterType">
+            <summary>
+            Types of BiDi characters (Table 4 in the Unicode BiDi algorithm).
+            </summary>
+        </member>
+        <member name="F:NBidi.BidiCharacterType.L">
+            <summary>
+            Left-to-Right
+            </summary>
+            <example>
+            LRM, most alphabetic, syllabic, Han ideographs, non-European or non-Arabic digits, ...
+            </example>
+            <remarks>Strong Type</remarks>
+        </member>
+        <member name="F:NBidi.BidiCharacterType.LRE">
+            <summary>
+            Left-to-Right Embedding
+            </summary>
+            <example>
+            LRE
+            </example>
+            <remarks>Strong Type</remarks>
+        </member>
+        <member name="F:NBidi.BidiCharacterType.LRO">
+            <summary>
+            Left-to-Right Override
+            </summary>
+            <example>
+            LRO
+            </example>
+            <remarks>Strong Type</remarks>
+        </member>
+        <member name="F:NBidi.BidiCharacterType.R">
+            <summary>
+            Right-to-Left
+            </summary>
+            <example>
+            RLM, Hebrew alphabet, and related punctuation
+            </example>
+            <remarks>Strong Type</remarks>
+        </member>
+        <member name="F:NBidi.BidiCharacterType.AL">
+            <summary>
+            Right-to-Left Arabic
+            </summary>
+            <example>
+            Arabic, Thaana, and Syriac alphabets, most punctuation specific to those scripts, ...
+            </example>
+            <remarks>Strong Type</remarks>
+        </member>
+        <member name="F:NBidi.BidiCharacterType.RLE">
+            <summary>
+            Right-to-Left Embedding
+            </summary>
+            <example>
+            RLE
+            </example>
+            <remarks>Strong Type</remarks>
+        </member>
+        <member name="F:NBidi.BidiCharacterType.RLO">
+            <summary>
+            Right-to-Left Override
+            </summary>
+            <example>
+            RLO
+            </example>
+            <remarks>Strong Type</remarks>
+        </member>
+        <member name="F:NBidi.BidiCharacterType.PDF">
+            <summary>
+            Pop Directional Format
+            </summary>
+            <example>
+            PDF
+            </example>
+            <remarks>Weak Type</remarks>
+        </member>
+        <member name="F:NBidi.BidiCharacterType.EN">
+            <summary>
+            European Number
+            </summary>
+            <example>
+            European digits, Eastern Arabic-Indic digits, ...
+            </example>
+            <remarks>Weak Type</remarks>
+        </member>
+        <member name="F:NBidi.BidiCharacterType.ES">
+            <summary>
+            European Number Separator
+            </summary>
+            <example>
+            Plus sign, minus sign
+            </example>
+            <remarks>Weak Type</remarks>
+        </member>
+        <member name="F:NBidi.BidiCharacterType.ET">
+            <summary>
+            European Number Terminator
+            </summary>
+            <example>
+            Degree sign, currency symbols, ...
+            </example>
+            <remarks>Weak Type</remarks>
+        </member>
+        <member name="F:NBidi.BidiCharacterType.AN">
+            <summary>
+            Arabic Number
+            </summary>
+            <example>
+            Arabic-Indic digits, Arabic decimal and thousands separators, ...
+            </example>
+            <remarks>Weak Type</remarks>
+        </member>
+        <member name="F:NBidi.BidiCharacterType.CS">
+            <summary>
+            Common Number Separator
+            </summary>
+            <example>
+            Colon, comma, full stop (period), No-break space, ...
+            </example>
+            <remarks>Weak Type</remarks>
+        </member>
+        <member name="F:NBidi.BidiCharacterType.NSM">
+            <summary>
+            Nonspacing Mark
+            </summary>
+            <example>
+            Characters marked Mn (Nonspacing_Mark) and Me (Enclosing_Mark) in the Unicode Character Database
+            </example>
+            <remarks>Weak Type</remarks>
+        </member>
+        <member name="F:NBidi.BidiCharacterType.BN">
+            <summary>
+            Boundary Neutral
+            </summary>
+            <example>
+            Most formatting and control characters, other than those explicitly given types above
+            </example>
+            <remarks>Weak Type</remarks>
+        </member>
+        <member name="F:NBidi.BidiCharacterType.B">
+            <summary>
+            Paragraph Separator
+            </summary>
+            <example>
+            Paragraph separator, appropriate Newline Functions, higher-level protocol paragraph determination
+            </example>
+            <remarks>Neutral Type</remarks>
+        </member>
+        <member name="F:NBidi.BidiCharacterType.S">
+            <summary>
+            Segment Separator
+            </summary>
+            <example>
+            Tab
+            </example>
+            <remarks>Neutral Type</remarks>
+        </member>
+        <member name="F:NBidi.BidiCharacterType.WS">
+            <summary>
+            Whitespace
+            </summary>
+            <example>
+            Space, figure space, line separator, form feed, General Punctuation spaces, ...
+            </example>
+            <remarks>Neutral Type</remarks>
+        </member>
+        <member name="F:NBidi.BidiCharacterType.ON">
+            <summary>
+            Other Neutrals
+            </summary>
+            <example>
+            All other characters, including OBJECT REPLACEMENT CHARACTER
+            </example>
+            <remarks>Neutral Type</remarks>
+        </member>
+        <member name="T:NBidi.UnicodeCanonicalClass">
+            <summary>
+            The different canonical classes of Unicode characters.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.NR">
+            <summary>Not Reordered</summary>
+            <remarks>Spacing, split, enclosing, reordrant, and Tibetan subjoined.</remarks>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.OV">
+            <summary>Overlays and interior</summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.NK">
+            <summary>Nuktas</summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.KV">
+            <summary>Hiragana/Katakana voicing marks</summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.VR">
+            <summary>Viramas</summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_10">
+            <summary>
+            General class level 10.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_11">
+            <summary>
+            General class level 11.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_12">
+            <summary>
+            General class level 12.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_13">
+            <summary>
+            General class level 13.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_14">
+            <summary>
+            General class level 14.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_15">
+            <summary>
+            General class level 15.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_16">
+            <summary>
+            General class level 16.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_17">
+            <summary>
+            General class level 17.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_18">
+            <summary>
+            General class level 18.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_19">
+            <summary>
+            General class level 19.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_20">
+            <summary>
+            General class level 20.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_21">
+            <summary>
+            General class level 21.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_22">
+            <summary>
+            General class level 22.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_23">
+            <summary>
+            General class level 23.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_24">
+            <summary>
+            General class level 24.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_25">
+            <summary>
+            General class level 25.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_26">
+            <summary>
+            General class level 26.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_27">
+            <summary>
+            General class level 27.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_28">
+            <summary>
+            General class level 28.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_29">
+            <summary>
+            General class level 29.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_30">
+            <summary>
+            General class level 30.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_31">
+            <summary>
+            General class level 31.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_32">
+            <summary>
+            General class level 32.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_33">
+            <summary>
+            General class level 33.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_34">
+            <summary>
+            General class level 34.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_35">
+            <summary>
+            General class level 35.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_36">
+            <summary>
+            General class level 36.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_37">
+            <summary>
+            General class level 37.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_38">
+            <summary>
+            General class level 38.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_39">
+            <summary>
+            General class level 39.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_40">
+            <summary>
+            General class level 40.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_41">
+            <summary>
+            General class level 41.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_42">
+            <summary>
+            General class level 42.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_43">
+            <summary>
+            General class level 43.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_44">
+            <summary>
+            General class level 44.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_45">
+            <summary>
+            General class level 45.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_46">
+            <summary>
+            General class level 46.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_47">
+            <summary>
+            General class level 47.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_48">
+            <summary>
+            General class level 48.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_49">
+            <summary>
+            General class level 49.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_50">
+            <summary>
+            General class level 50.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_51">
+            <summary>
+            General class level 51.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_52">
+            <summary>
+            General class level 52.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_53">
+            <summary>
+            General class level 53.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_54">
+            <summary>
+            General class level 54.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_55">
+            <summary>
+            General class level 55.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_56">
+            <summary>
+            General class level 56.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_57">
+            <summary>
+            General class level 57.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_58">
+            <summary>
+            General class level 58.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_59">
+            <summary>
+            General class level 59.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_60">
+            <summary>
+            General class level 60.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_61">
+            <summary>
+            General class level 61.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_62">
+            <summary>
+            General class level 62.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_63">
+            <summary>
+            General class level 63.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_64">
+            <summary>
+            General class level 64.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_65">
+            <summary>
+            General class level 65.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_66">
+            <summary>
+            General class level 66.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_67">
+            <summary>
+            General class level 67.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_68">
+            <summary>
+            General class level 68.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_69">
+            <summary>
+            General class level 69.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_70">
+            <summary>
+            General class level 70.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_71">
+            <summary>
+            General class level 71.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_72">
+            <summary>
+            General class level 72.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_73">
+            <summary>
+            General class level 73.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_74">
+            <summary>
+            General class level 74.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_75">
+            <summary>
+            General class level 75.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_76">
+            <summary>
+            General class level 76.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_77">
+            <summary>
+            General class level 77.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_78">
+            <summary>
+            General class level 78.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_79">
+            <summary>
+            General class level 79.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_80">
+            <summary>
+            General class level 80.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_81">
+            <summary>
+            General class level 81.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_82">
+            <summary>
+            General class level 82.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_83">
+            <summary>
+            General class level 83.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_84">
+            <summary>
+            General class level 84.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_85">
+            <summary>
+            General class level 85.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_86">
+            <summary>
+            General class level 86.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_87">
+            <summary>
+            General class level 87.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_88">
+            <summary>
+            General class level 88.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_89">
+            <summary>
+            General class level 89.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_90">
+            <summary>
+            General class level 90.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_91">
+            <summary>
+            General class level 91.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_92">
+            <summary>
+            General class level 92.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_93">
+            <summary>
+            General class level 93.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_94">
+            <summary>
+            General class level 94.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_95">
+            <summary>
+            General class level 95.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_96">
+            <summary>
+            General class level 96.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_97">
+            <summary>
+            General class level 97.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_98">
+            <summary>
+            General class level 98.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_99">
+            <summary>
+            General class level 99.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_100">
+            <summary>
+            General class level 100.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_101">
+            <summary>
+            General class level 101.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_102">
+            <summary>
+            General class level 102.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_103">
+            <summary>
+            General class level 103.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_104">
+            <summary>
+            General class level 104.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_105">
+            <summary>
+            General class level 105.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_106">
+            <summary>
+            General class level 106.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_107">
+            <summary>
+            General class level 107.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_108">
+            <summary>
+            General class level 108.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_109">
+            <summary>
+            General class level 109.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_110">
+            <summary>
+            General class level 110.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_111">
+            <summary>
+            General class level 111.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_112">
+            <summary>
+            General class level 112.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_113">
+            <summary>
+            General class level 113.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_114">
+            <summary>
+            General class level 114.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_115">
+            <summary>
+            General class level 115.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_116">
+            <summary>
+            General class level 116.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_117">
+            <summary>
+            General class level 117.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_118">
+            <summary>
+            General class level 118.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_119">
+            <summary>
+            General class level 119.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_120">
+            <summary>
+            General class level 120.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_121">
+            <summary>
+            General class level 121.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_122">
+            <summary>
+            General class level 122.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_123">
+            <summary>
+            General class level 123.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_124">
+            <summary>
+            General class level 124.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_125">
+            <summary>
+            General class level 125.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_126">
+            <summary>
+            General class level 126.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_127">
+            <summary>
+            General class level 127.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_128">
+            <summary>
+            General class level 128.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_129">
+            <summary>
+            General class level 129.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_130">
+            <summary>
+            General class level 130.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_131">
+            <summary>
+            General class level 131.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_132">
+            <summary>
+            General class level 132.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_133">
+            <summary>
+            General class level 133.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_134">
+            <summary>
+            General class level 134.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_135">
+            <summary>
+            General class level 135.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_136">
+            <summary>
+            General class level 136.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_137">
+            <summary>
+            General class level 137.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_138">
+            <summary>
+            General class level 138.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_139">
+            <summary>
+            General class level 139.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_140">
+            <summary>
+            General class level 140.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_141">
+            <summary>
+            General class level 141.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_142">
+            <summary>
+            General class level 142.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_143">
+            <summary>
+            General class level 143.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_144">
+            <summary>
+            General class level 144.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_145">
+            <summary>
+            General class level 145.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_146">
+            <summary>
+            General class level 146.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_147">
+            <summary>
+            General class level 147.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_148">
+            <summary>
+            General class level 148.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_149">
+            <summary>
+            General class level 149.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_150">
+            <summary>
+            General class level 150.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_151">
+            <summary>
+            General class level 151.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_152">
+            <summary>
+            General class level 152.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_153">
+            <summary>
+            General class level 153.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_154">
+            <summary>
+            General class level 154.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_155">
+            <summary>
+            General class level 155.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_156">
+            <summary>
+            General class level 156.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_157">
+            <summary>
+            General class level 157.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_158">
+            <summary>
+            General class level 158.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_159">
+            <summary>
+            General class level 159.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_160">
+            <summary>
+            General class level 160.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_161">
+            <summary>
+            General class level 161.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_162">
+            <summary>
+            General class level 162.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_163">
+            <summary>
+            General class level 163.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_164">
+            <summary>
+            General class level 164.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_165">
+            <summary>
+            General class level 165.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_166">
+            <summary>
+            General class level 166.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_167">
+            <summary>
+            General class level 167.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_168">
+            <summary>
+            General class level 168.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_169">
+            <summary>
+            General class level 169.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_170">
+            <summary>
+            General class level 170.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_171">
+            <summary>
+            General class level 171.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_172">
+            <summary>
+            General class level 172.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_173">
+            <summary>
+            General class level 173.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_174">
+            <summary>
+            General class level 174.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_175">
+            <summary>
+            General class level 175.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_176">
+            <summary>
+            General class level 176.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_177">
+            <summary>
+            General class level 177.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_178">
+            <summary>
+            General class level 178.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_179">
+            <summary>
+            General class level 179.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_180">
+            <summary>
+            General class level 180.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_181">
+            <summary>
+            General class level 181.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_182">
+            <summary>
+            General class level 182.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_183">
+            <summary>
+            General class level 183.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_184">
+            <summary>
+            General class level 184.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_185">
+            <summary>
+            General class level 185.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_186">
+            <summary>
+            General class level 186.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_187">
+            <summary>
+            General class level 187.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_188">
+            <summary>
+            General class level 188.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_189">
+            <summary>
+            General class level 189.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_190">
+            <summary>
+            General class level 190.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_191">
+            <summary>
+            General class level 191.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_192">
+            <summary>
+            General class level 192.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_193">
+            <summary>
+            General class level 193.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_194">
+            <summary>
+            General class level 194.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_195">
+            <summary>
+            General class level 195.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_196">
+            <summary>
+            General class level 196.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_197">
+            <summary>
+            General class level 197.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_198">
+            <summary>
+            General class level 198.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.CLASS_199">
+            <summary>
+            General class level 199.
+            </summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.ATBL">
+            <summary>Attached Below Left</summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.ATB">
+            <summary>Attached Below</summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.ATBR">
+            <summary>Attached Below Right</summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.ATL">
+            <summary>Attached Left</summary>
+            <remarks>Reordrant around single base character.</remarks>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.ATR">
+            <summary>Attached Right</summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.ATAL">
+            <summary>Attached Above Left</summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.ATA">
+            <summary>Attached Above</summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.ATAR">
+            <summary>Attached Above Right</summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.BL">
+            <summary>Below Left</summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.B">
+            <summary>Below</summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.BR">
+            <summary>Below Right</summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.L">
+            <summary>Left</summary>
+            <remarks>Reordrant around single base character.</remarks>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.R">
+            <summary>Right</summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.AL">
+            <summary>Above Left</summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.A">
+            <summary>Above</summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.AR">
+            <summary>Above Right</summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.DB">
+            <summary>Double Below</summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.DA">
+            <summary>Double Above</summary>
+        </member>
+        <member name="F:NBidi.UnicodeCanonicalClass.IS">
+            <summary>Iota Subscript</summary>
+        </member>
+        <member name="T:NBidi.BidiCharacterMirrorResolver">
+            <summary>
+            An helper class that provides the mirrored alternatives for characters.
+            </summary>
+        </member>
+        <member name="M:NBidi.BidiCharacterMirrorResolver.GetBidiCharacterMirror(System.Char)">
+            <summary>
+            Returns the corresponding mirrored character for the given character, if any. If no mirroring available, returns the given character.
+            </summary>
+            <param name="c">A character to mirror.</param>
+            <returns>The mirrored character, or the given character if no mirroring available.</returns>
+        </member>
+        <member name="T:NBidi.NBidi">
+            <summary>
+            The main class that implements the BIDI algorithm.
+            </summary>
+            <remarks>
+            Note that the BiDi algorithm does not cover reordering a visual string to logical form.
+            Some times the very same algorithm will do the job, but in more complex situations it'll fail.
+            The correct way is to always work in logical form in memory, and only run the BiDi algorithm to display the results on the screen.
+            </remarks>
+            <example>
+            <code>string visual = NBidi.NBidi.LogicalToVisual(string logical)</code>
+            </example>
+        </member>
+        <member name="M:NBidi.NBidi.LogicalToVisual(System.String)">
+            <summary>
+            Implementation of the BIDI algorithm, as described in http://www.unicode.org/reports/tr9/tr9-17.html
+            </summary>
+            <param name="logicalString">The original logical-ordered string.</param>
+            <returns>The visual representation of the string.</returns>
+        </member>
+        <member name="M:NBidi.NBidi.LogicalToVisual(System.String,System.Int32[]@,System.Int32[]@)">
+            <summary>
+            Implementation of the BIDI algorithm, as described in http://www.unicode.org/reports/tr9/tr9-17.html
+            </summary>
+            <param name="logicalString">The original logical-ordered string.</param>
+            <param name="indexes">Implies where the original characters are.</param>
+            <param name="lengths">Implies how many characters each original character occupies.</param>
+            <returns>The visual representation of the string.</returns>
+        </member>
+        <member name="M:NBidi.NBidi.Paragraph.ResolveWeakTypes(System.Int32,System.Int32,NBidi.BidiCharacterType,NBidi.BidiCharacterType)">
+            <summary>
+            3.3.3 Resolving Weak Types
+            </summary>
+        </member>
+        <member name="M:NBidi.NBidi.Paragraph.ResolveNeutralTypes(System.Int32,System.Int32,NBidi.BidiCharacterType,NBidi.BidiCharacterType,System.Int32)">
+            <summary>
+            3.3.4 Resolving Neutral Types
+            </summary>
+        </member>
+        <member name="M:NBidi.NBidi.Paragraph.ResolveImplicitTypes(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            3.3.5 Resolving Implicit Levels
+            </summary>
+        </member>
+        <member name="M:NBidi.NBidi.Paragraph.ReorderString">
+            <summary>
+            3.4 Reordering Resolved Levels
+            </summary>
+        </member>
+        <member name="M:NBidi.NBidi.Paragraph.FixMirroredCharacters">
+            <summary>
+            L4. A character is depicted by a mirrored glyph if and only if (a) the resolved directionality of that character is R, and (b) the Bidi_Mirrored property value of that character is true.
+            </summary>
+        </member>
+        <member name="M:NBidi.NBidi.Paragraph.PerformArabicShaping(System.String)">
+            <summary>
+            3.5 Shaping
+            Implements rules R1-R7 and rules L1-L3 of section 8.2 (Arabic) of the Unicode standard.
+            </summary>
+        </member>
+        <member name="M:NBidi.NBidi.Paragraph.TypeForLevel(System.Int32)">
+            <summary>
+            Return the strong type (L or R) corresponding to the embedding level.
+            </summary>
+            <param name="level">The embedding level to check.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NBidi.NBidi.Paragraph.FindRunLimit(System.Int32,System.Int32,NBidi.BidiCharacterType[])">
+            <summary>
+            Return the limit of the run, starting at index, that includes only resultTypes in validSet.
+            This checks the value at index, and will return index if that value is not in validSet.
+            </summary>
+            <param name="index"></param>
+            <param name="limit"></param>
+            <param name="validSet"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NBidi.NBidi.Paragraph.SetTypes(System.Int32,System.Int32,NBidi.BidiCharacterType)">
+            <summary>
+            Set resultTypes from start up to (but not including) limit to newType.
+            </summary>
+            <param name="start"></param>
+            <param name="limit"></param>
+            <param name="newType"></param>
+        </member>
+    </members>
+</doc>

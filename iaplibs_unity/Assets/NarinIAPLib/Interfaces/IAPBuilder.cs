@@ -40,7 +40,7 @@ namespace Narin.Unity.IAP {
         }
 
         public IIAPManager BuildAndAttach(MonoBehaviour mono) {
-            IIAPManager ret;
+            IIAPManager ret = null;
 
             #if _dev_ || _cafebazaar_
             ret = mono.gameObject.AddComponent<BazaarIAPManager>();

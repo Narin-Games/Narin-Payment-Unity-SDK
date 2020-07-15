@@ -24,7 +24,7 @@ public class IAPSample : MonoBehaviour {
                 .SetPublicKey(Store.Bazaar, PUBLIC_KEY_BAZAAR)
                 .SetPublicKey(Store.Myket, PUBLIC_KEY_MYKET)
                 .AddProduct(GEM_PACK_1  , ProductType.Consumable)
-                .AddProduct(HERO_1      , ProductType.NonConsumable)
+                .AddProduct(HERO_1      , ProductType.Subscription)
 
                 .AddProduct(VIP_ALIAS, new Dictionary<Store, string>() {
                      {Store.Bazaar,     "com.narin.cafebazaar.vip"}

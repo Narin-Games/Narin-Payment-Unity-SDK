@@ -2,6 +2,7 @@
 using UnityEngine;
 using System;
 using UnityEngine.UI;
+using NBidi;
 
 public class IAPSampleUI : MonoBehaviour
 {
@@ -79,12 +80,12 @@ public class IAPSampleUI : MonoBehaviour
         
         for (int i=0; i<skus.SkusInfo.Count; ++i) {
             log += i + ":" + '\n' +
-                "ProductId: "       + skus.SkusInfo[i].ProductId    + '\n' + 
-                "Type: "            + skus.SkusInfo[i].Type         + '\n' +
-                "Price: "           + skus.SkusInfo[i].Price        + '\n' +
-                "Currency Code: "   + skus.SkusInfo[i].CurrencyCode + '\n' +
-                "Title: "           + skus.SkusInfo[i].Title        + '\n' +
-                "Description: "     + skus.SkusInfo[i].Description  + '\n' +
+                "ProductId: "       + skus.SkusInfo[i].ProductId                                + '\n' + 
+                "Type: "            + skus.SkusInfo[i].Type                                     + '\n' +
+                "Price: "           + NBidi.NBidi.LogicalToVisual(skus.SkusInfo[i].Price)       + '\n' +
+                "Currency Code: "   + skus.SkusInfo[i].CurrencyCode                             + '\n' +
+                "Title: "           + NBidi.NBidi.LogicalToVisual(skus.SkusInfo[i].Title)       + '\n' +
+                "Description: "     + NBidi.NBidi.LogicalToVisual(skus.SkusInfo[i].Description) + '\n' +
                 ".";
         }
 
@@ -100,11 +101,11 @@ public class IAPSampleUI : MonoBehaviour
 
     private void OnPurchaseSucceededHandler(object sender, PurchaseEventArgs purchase) {
         string log = 
-            "ProductId: "       + purchase.ProductId        + '\n' + 
-            "Type: "            + purchase.Type.ToString()  + '\n' +
-            "PackageName: "     + purchase.PackageName      + '\n' +
-            "Currency Code: "   + purchase.PurchaseToken    + '\n' +
-            "Title: "           + purchase.DeveloperPayload + '\n' +
+            "ProductId: "           + purchase.ProductId                                + '\n' + 
+            "Type: "                + purchase.Type.ToString()                          + '\n' +
+            "PackageName: "         + NBidi.NBidi.LogicalToVisual(purchase.PackageName) + '\n' +
+            "Purchase Token: "      + purchase.PurchaseToken                            + '\n' +
+            "DeveloperPayload: "    + purchase.DeveloperPayload                         + '\n' +
             "";
 
         Debug.Log(log);
@@ -119,11 +120,11 @@ public class IAPSampleUI : MonoBehaviour
 
     private void OnConsumeSucceededHandler(object sender, PurchaseEventArgs purchase) {
         string log = 
-            "ProductId: "       + purchase.ProductId        + '\n' + 
-            "Type: "            + purchase.Type.ToString()  + '\n' +
-            "PackageName: "     + purchase.PackageName      + '\n' +
-            "Currency Code: "   + purchase.PurchaseToken    + '\n' +
-            "Title: "           + purchase.DeveloperPayload + '\n' +
+            "ProductId: "           + purchase.ProductId                                + '\n' + 
+            "Type: "                + purchase.Type.ToString()                          + '\n' +
+            "PackageName: "         + NBidi.NBidi.LogicalToVisual(purchase.PackageName) + '\n' +
+            "Purchase Token: "      + purchase.PurchaseToken                            + '\n' +
+            "DeveloperPayload: "    + purchase.DeveloperPayload                         + '\n' +
             "";
 
         Debug.Log(log);

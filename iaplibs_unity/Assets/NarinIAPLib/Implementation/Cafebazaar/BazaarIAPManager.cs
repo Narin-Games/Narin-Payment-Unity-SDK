@@ -163,9 +163,8 @@ namespace Narin.Unity.IAP {
 
                 ProductType ret = ProductType.NotDefined;
 
-                if(typeStr == "Consumable")     ret = ProductType.Consumable;
-                if(typeStr == "NonConsumable")  ret = ProductType.NonConsumable;
-                if(typeStr == "Subscription")   ret = ProductType.Subscription;
+                if(typeStr == "inapp")  ret = ProductType.Consumable;
+                if(typeStr == "subs")   ret = ProductType.Subscription;
 
                 return ret;
             }
