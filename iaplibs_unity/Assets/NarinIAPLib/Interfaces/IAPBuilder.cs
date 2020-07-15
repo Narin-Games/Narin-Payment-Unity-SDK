@@ -1,9 +1,6 @@
-﻿using BazaarPlugin;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Purchasing;
 
 namespace Narin.Unity.IAP {
 
@@ -62,6 +59,11 @@ namespace Narin.Unity.IAP {
             CurrentIapManager = ret;
 
             return ret;
+        }
+
+        private void Reset() {
+            _publicKeys.Clear();
+            _products.Clear();
         }
     }
 }

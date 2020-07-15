@@ -4,9 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using BazaarPlugin;
 using System;
-using System.Runtime.CompilerServices;
-using System.CodeDom;
-using System.Linq;
 
 namespace Narin.Unity.IAP {
     public partial class IAPBuilder {
@@ -162,6 +159,8 @@ namespace Narin.Unity.IAP {
             #endregion
 
             private ProductType ConvertProductType(string typeStr) {
+                Debug.Log("Cafebazaar Product Type: " + typeStr);
+
                 ProductType ret = ProductType.NotDefined;
 
                 if(typeStr == "Consumable")     ret = ProductType.Consumable;
