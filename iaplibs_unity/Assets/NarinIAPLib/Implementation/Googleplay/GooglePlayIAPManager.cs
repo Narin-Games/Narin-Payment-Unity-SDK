@@ -11,17 +11,16 @@ using System;
 namespace Narin.Unity.IAP {
     public partial class IAPBuilder {
         private class GooglePlayIAPManager : SingletonMono<GooglePlayIAPManager>, IIAPManager, IStoreListener {
-    
-            public event EventHandler<EventArgs>                OnPurchaseSupported;
-            public event EventHandler<ErrorEventArgs>           OnPurchaseNotSupported;
-            public event EventHandler<niap.PurchaseEventArgs>   OnPurchaseSucceeded;
-            public event EventHandler<ErrorEventArgs>           OnPurchaseFailedHandler;
-            public event EventHandler<QuerySkuInfoEventArgs>    OnQuerySkuInfoSucceeded;
-            public event EventHandler<ErrorEventArgs>           OnQuerySkuInfoFailed;
-            public event EventHandler<niap.PurchaseEventArgs>   OnConsumeSucceeded;
-            public event EventHandler<ErrorEventArgs>           OnConsumeFailed;
-            public event EventHandler<EventArgs>                OnRetriveFailedPurchasesSucceeded;
-            public event EventHandler<ErrorEventArgs>           OnRetriveFailedPurchasesFailed;
+            public event EventHandler<EventArgs>                    OnPurchaseSupported;
+            public event EventHandler<ErrorEventArgs>               OnPurchaseNotSupported;
+            public event EventHandler<niap.PurchaseEventArgs>       OnPurchaseSucceeded;
+            public event EventHandler<ErrorEventArgs>               OnPurchaseFailedHandler;
+            public event EventHandler<QuerySkuInfoEventArgs>        OnQuerySkuInfoSucceeded;
+            public event EventHandler<ErrorEventArgs>               OnQuerySkuInfoFailed;
+            public event EventHandler<niap.PurchaseEventArgs>       OnConsumeSucceeded;
+            public event EventHandler<ErrorEventArgs>               OnConsumeFailed;
+            public event EventHandler<QueryNotConsumedEventArgs>    OnQueryNotConsumedPurchasesSucceeded;
+            public event EventHandler<ErrorEventArgs>               OnQueryNotConsumedPurchasesFailed;
             
             // This implementation just for implementing two 
             // interface (IStoreListener, IIAPEventManager) with 
@@ -41,8 +40,8 @@ namespace Narin.Unity.IAP {
             }
 
             private Dictionary<string, ProductBase> _products;
-            private static uiap.IStoreController _storeController;
-            private static uiap.IExtensionProvider _storeExtensionProvider;
+            private uiap.IStoreController _storeController;
+            private uiap.IExtensionProvider _storeExtensionProvider;
             private object _lockObject = new object();
 
             public void SetData(Dictionary<string, ProductBase> products) {
@@ -101,10 +100,10 @@ namespace Narin.Unity.IAP {
                 if(!IsInitialized()) return;
 
                 var p = _storeController.products.WithID(FilterAlias(productId));
+                DeletePendingProduct(productId);
                 _storeController.ConfirmPendingPurchase(p);
-
                 OnConsumeSucceeded(this, new PurchaseEventArgs(
-                      string.Empty
+                      p.hasReceipt ? p.receipt : string.Empty
                      ,p.metadata.localizedTitle
                      ,p.definition.id
                      ,p.transactionID
@@ -112,8 +111,9 @@ namespace Narin.Unity.IAP {
                      ));
             }
 
-            public void RetrieveFailedPurchases() {
-                throw new System.NotImplementedException();
+            public void QueryNotConsumedPurchases() {
+                List<PurchaseEventArgs> ret = new List<PurchaseEventArgs>(GetAllPendingPurchases());
+                OnQueryNotConsumedPurchasesSucceeded(this, new QueryNotConsumedEventArgs(ret));
             }
             #endregion
 
@@ -132,15 +132,19 @@ namespace Narin.Unity.IAP {
             }
 
             public PurchaseProcessingResult ProcessPurchase(uiap.PurchaseEventArgs purchase) {
-
-                 if(null != OnPurchaseSucceeded)
-                    OnPurchaseSucceeded(this, new PurchaseEventArgs(
-                         string.Empty
+                Debug.Log("Exception");
+                var ret = new PurchaseEventArgs(
+                         purchase.purchasedProduct.hasReceipt ? purchase.purchasedProduct.receipt : string.Empty
                         ,purchase.purchasedProduct.metadata.localizedTitle
                         ,purchase.purchasedProduct.definition.id
                         ,purchase.purchasedProduct.transactionID
                         ,ConvertProductType(purchase.purchasedProduct.definition.type)
-                        ));
+                        );
+
+                AddPendingPurchase(ret);
+
+                if(null != OnPurchaseSucceeded)
+                    OnPurchaseSucceeded(this, ret);
 
                 return PurchaseProcessingResult.Pending;
             }
@@ -185,6 +189,44 @@ namespace Narin.Unity.IAP {
                     ret.Add(_products[pid].ProductId);
                 }
 
+                return ret.ToArray();
+            }
+            
+            private void AddPendingPurchase(PurchaseEventArgs purchase) {
+                Debug.Log(purchase.GetJson());
+                PlayerPrefs.SetString(purchase.ProductId, purchase.GetJson());
+            }
+
+            private void DeletePendingProduct(PurchaseEventArgs purchase) {
+                if(PlayerPrefs.HasKey(purchase.ProductId)) {
+                    PlayerPrefs.DeleteKey(purchase.ProductId);
+                }
+            }
+
+            private void DeletePendingProduct(string productId) {
+                if(PlayerPrefs.HasKey(productId)) {
+                    PlayerPrefs.DeleteKey(productId);
+                }
+            }
+
+            private PurchaseEventArgs[] GetAllPendingPurchases() {
+                List<PurchaseEventArgs> ret = new List<PurchaseEventArgs>(_products.Count);
+
+                foreach(var p in _products.Values) {
+                    if(PlayerPrefs.HasKey(p.ProductId)) {
+                        string pendingPurchaseJson = PlayerPrefs.GetString(p.ProductId);
+                        try {
+                            ret.Add(PurchaseEventArgs.FromJson(pendingPurchaseJson));          
+                        }
+                        catch {
+                            Debug.LogError("JsonUtility can't deserialize pending purchases");
+                            continue;
+                        }
+                    }
+                    else {
+                        continue;
+                    }
+                }
                 return ret.ToArray();
             }
         }

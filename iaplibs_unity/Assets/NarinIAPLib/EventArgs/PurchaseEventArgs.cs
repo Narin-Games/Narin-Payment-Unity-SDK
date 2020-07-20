@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Narin.Unity.IAP {
-
+    [Serializable]
     public class PurchaseEventArgs: EventArgs {
-        public readonly string DeveloperPayload;
-        public readonly string PackageName;
-        public readonly string ProductId;
-        public readonly string PurchaseToken;
-        public readonly ProductType Type;
+        public string DeveloperPayload;
+        public string PackageName;
+        public string ProductId;       
+        public string PurchaseToken;
+        public ProductType Type;       
 
         public PurchaseEventArgs(
               string developerPayload
@@ -23,6 +24,13 @@ namespace Narin.Unity.IAP {
             PurchaseToken = purchaseToken;
             Type = type;
         }
-    }
 
+        public static PurchaseEventArgs FromJson(string json) {
+            return JsonUtility.FromJson<PurchaseEventArgs>(json);
+        }
+
+        public string GetJson() {
+            return JsonUtility.ToJson(this);
+        }
+    }
 }

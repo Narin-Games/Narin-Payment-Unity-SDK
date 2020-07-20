@@ -9,16 +9,16 @@ namespace Narin.Unity.IAP {
     public partial class IAPBuilder {
 
         private class BazaarIAPManager : SingletonMono<BazaarIAPManager>, IIAPManager {
-            public event EventHandler<EventArgs>                OnPurchaseSupported;
-            public event EventHandler<ErrorEventArgs>           OnPurchaseNotSupported;
-            public event EventHandler<PurchaseEventArgs>        OnPurchaseSucceeded;
-            public event EventHandler<ErrorEventArgs>           OnPurchaseFailed;
-            public event EventHandler<PurchaseEventArgs>        OnConsumeSucceeded;
-            public event EventHandler<ErrorEventArgs>           OnConsumeFailed;
-            public event EventHandler<QuerySkuInfoEventArgs>    OnQuerySkuInfoSucceeded;
-            public event EventHandler<ErrorEventArgs>           OnQuerySkuInfoFailed;
-            public event EventHandler<EventArgs>                OnRetriveFailedPurchasesSucceeded;
-            public event EventHandler<ErrorEventArgs>           OnRetriveFailedPurchasesFailed;
+            public event EventHandler<EventArgs>                    OnPurchaseSupported;
+            public event EventHandler<ErrorEventArgs>               OnPurchaseNotSupported;
+            public event EventHandler<PurchaseEventArgs>            OnPurchaseSucceeded;
+            public event EventHandler<ErrorEventArgs>               OnPurchaseFailed;
+            public event EventHandler<PurchaseEventArgs>            OnConsumeSucceeded;
+            public event EventHandler<ErrorEventArgs>               OnConsumeFailed;
+            public event EventHandler<QuerySkuInfoEventArgs>        OnQuerySkuInfoSucceeded;
+            public event EventHandler<ErrorEventArgs>               OnQuerySkuInfoFailed;
+            public event EventHandler<QueryNotConsumedEventArgs>    OnQueryNotConsumedPurchasesSucceeded;
+            public event EventHandler<ErrorEventArgs>               OnQueryNotConsumedPurchasesFailed;
 
             private string _publicKey;
             private Dictionary<string, ProductBase> _products;
@@ -71,7 +71,7 @@ namespace Narin.Unity.IAP {
                 BazaarIAB.querySkuDetails(FilterAlias(productIds));
             }
         
-            public void RetrieveFailedPurchases() {
+            public void QueryNotConsumedProducts() {
                 throw new System.NotImplementedException();
             }
             #endregion

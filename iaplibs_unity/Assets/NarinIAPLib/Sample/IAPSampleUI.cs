@@ -21,8 +21,8 @@ public class IAPSampleUI : MonoBehaviour
         iapManager.OnPurchaseFailed                     += OnPurchaseFailedHandler;
         iapManager.OnConsumeSucceeded                   += OnConsumeSucceededHandler;
         iapManager.OnConsumeFailed                      += OnConsumeFailedHandler;
-        iapManager.OnRetriveFailedPurchasesSucceeded    += OnRetriveFailedPurchasesSucceededHandler;
-        iapManager.OnRetriveFailedPurchasesFailed       += OnRetriveFailedPurchasesFailedHandler;
+        iapManager.OnQueryNotConsumedPurchasesSucceeded += OnQueryNotConsumedPurchasesSucceededHandler;
+        iapManager.OnQueryNotConsumedPurchasesFailed    += OnQueryNotConsumedPurchasesFailedHandler;
     }
 
     void OnDisable() {
@@ -34,8 +34,8 @@ public class IAPSampleUI : MonoBehaviour
         iapManager.OnPurchaseFailed                     -= OnPurchaseFailedHandler;
         iapManager.OnConsumeSucceeded                   -= OnConsumeSucceededHandler;
         iapManager.OnConsumeFailed                      -= OnConsumeFailedHandler;
-        iapManager.OnRetriveFailedPurchasesSucceeded    -= OnRetriveFailedPurchasesSucceededHandler;
-        iapManager.OnRetriveFailedPurchasesFailed       -= OnRetriveFailedPurchasesFailedHandler;            
+        iapManager.OnQueryNotConsumedPurchasesSucceeded -= OnQueryNotConsumedPurchasesSucceededHandler;
+        iapManager.OnQueryNotConsumedPurchasesFailed    -= OnQueryNotConsumedPurchasesFailedHandler;            
     }
 
     public void Init_OnClick() {
@@ -58,8 +58,8 @@ public class IAPSampleUI : MonoBehaviour
         });
     }
 
-    public void RetrieveFailedPurchases_OnClick() {
-        iapManager.RetrieveFailedPurchases();
+    public void QueryNotConsumedPurchases_OnClick() {
+        iapManager.QueryNotConsumedPurchases();
     }
 
     #region _event_listeners_
@@ -79,7 +79,8 @@ public class IAPSampleUI : MonoBehaviour
         string log = "";
         
         for (int i=0; i<skus.SkusInfo.Count; ++i) {
-            log += i + ":" + '\n' +
+            log +=
+                "Idx: "             + i                                                         + '\n' +
                 "ProductId: "       + skus.SkusInfo[i].ProductId                                + '\n' + 
                 "Type: "            + skus.SkusInfo[i].Type                                     + '\n' +
                 "Price: "           + NBidi.NBidi.LogicalToVisual(skus.SkusInfo[i].Price)       + '\n' +
@@ -137,11 +138,24 @@ public class IAPSampleUI : MonoBehaviour
         _txtResult.text = log;
     }
 
-    private void OnRetriveFailedPurchasesSucceededHandler(object sender, EventArgs e) {
-        throw new NotImplementedException();
+    private void OnQueryNotConsumedPurchasesSucceededHandler(object sender, QueryNotConsumedEventArgs purchases) {
+        var purchaseList = purchases.Purchases;
+        string log = "You have no not consumed purchases";
+        for(int i=0; i<purchaseList.Count; ++i) {
+            log += 
+                "Idx: "                 + i                                                         + '\n' +
+                "ProductId: "           + purchaseList[i].ProductId                                 + '\n' +
+                "Type: "                + purchaseList[i].Type.ToString()                           + '\n' +
+                "PackageName: "         + NBidi.NBidi.LogicalToVisual(purchaseList[i].PackageName)  + '\n' +
+                "Purchase Token: "      + purchaseList[i].PurchaseToken                             + '\n' +
+                "DeveloperPayload: "    + purchaseList[i].DeveloperPayload                          + '\n' +
+                "";
+        }
+        Debug.Log(log);
+        _txtResult.text = log;
     }
 
-    private void OnRetriveFailedPurchasesFailedHandler(object sender, ErrorEventArgs e) {
+    private void OnQueryNotConsumedPurchasesFailedHandler(object sender, ErrorEventArgs error) {
         throw new NotImplementedException();
     }
     #endregion

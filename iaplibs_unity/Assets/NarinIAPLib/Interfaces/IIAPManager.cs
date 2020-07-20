@@ -13,43 +13,43 @@ namespace Narin.Unity.IAP {
         /// <summary>
         /// Fired after Init is called when IAP is supported on the devive
         /// </summary>
-        event EventHandler<EventArgs>               OnPurchaseSupported;
+        event EventHandler<EventArgs>                   OnPurchaseSupported;
         /// <summary>
         /// Fired after Init is called when IAP is not supported on the device
         /// </summary>
-        event EventHandler<ErrorEventArgs>          OnPurchaseNotSupported;
+        event EventHandler<ErrorEventArgs>              OnPurchaseNotSupported;
         /// <summary>
         /// Fired after PurchaseProduct is called when a purchase succeeds
         /// </summary>
-        event EventHandler<PurchaseEventArgs>       OnPurchaseSucceeded;
+        event EventHandler<PurchaseEventArgs>           OnPurchaseSucceeded;
         /// <summary>
         /// Fired after PurcahseProduct is called when a purchase fails
         /// </summary>
-        event EventHandler<ErrorEventArgs>          OnPurchaseFailed;
+        event EventHandler<ErrorEventArgs>              OnPurchaseFailed;
         /// <summary>
         /// Fired after QuerySkuInfo is called when query has returned
         /// </summary>
-        event EventHandler<QuerySkuInfoEventArgs>   OnQuerySkuInfoSucceeded;
+        event EventHandler<QuerySkuInfoEventArgs>       OnQuerySkuInfoSucceeded;
         /// <summary>
         /// Fired after QuerySkuInfo is called when query fails
         /// </summary>
-        event EventHandler<ErrorEventArgs>          OnQuerySkuInfoFailed;
+        event EventHandler<ErrorEventArgs>              OnQuerySkuInfoFailed;
         /// <summary>
         /// Fired after ConsumeProduct is called when a consume succeeds
         /// </summary>
-        event EventHandler<PurchaseEventArgs>       OnConsumeSucceeded;
+        event EventHandler<PurchaseEventArgs>           OnConsumeSucceeded;
         /// <summary>
         /// Fired after ConsumeProduct is called when a consume fails
         /// </summary>
-        event EventHandler<ErrorEventArgs>          OnConsumeFailed;
+        event EventHandler<ErrorEventArgs>              OnConsumeFailed;
         /// <summary>
         /// !!! This event not implemented !!!
         /// </summary>
-        event EventHandler<EventArgs>               OnRetriveFailedPurchasesSucceeded;
+        event EventHandler<QueryNotConsumedEventArgs>   OnQueryNotConsumedPurchasesSucceeded;
         /// <summary>
         /// !!! This event not implemented !!!
         /// </summary>
-        event EventHandler<ErrorEventArgs>          OnRetriveFailedPurchasesFailed;
+        event EventHandler<ErrorEventArgs>              OnQueryNotConsumedPurchasesFailed;
 
         /// <summary>
         /// Initializes IAP system
@@ -73,6 +73,6 @@ namespace Narin.Unity.IAP {
         /// <summary>
         /// !!! This method not implemented !!!
         /// </summary>
-        void RetrieveFailedPurchases();
+        void QueryNotConsumedPurchases();
     }
 }
