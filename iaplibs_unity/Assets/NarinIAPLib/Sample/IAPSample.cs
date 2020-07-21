@@ -10,7 +10,10 @@ public class IAPSample : MonoBehaviour {
         "Sxv7TZ90lsZqFSTtyseBgHlDWNV7mwrddI982To/djjraDeIPgSxON7lU+Z/couQ1421+fUl4SQdzbHlQuZp2zStLAHR9T3+rU/yDBcKb9ARJ0" +
         "m1BNS7KGloJ1sG3IETK6eLQIQautwyoIx6Kyzo+aCNrro76YYEtlZkWaGt6rLdj1EKmC2rXIG92VoQoSzZSod8LU/xdpF0CAwEAAQ==";
 
-    public const string PUBLIC_KEY_MYKET    = "";
+    public const string PUBLIC_KEY_MYKET    = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCL+BqTuDV8QMySxaMkDui0Oc1WBZz" +
+        "VCbS4I84rbGvvNlBx8xkJofwCF67h1YoXiitrGAqVQIliHpJ+uNtJVJaZd+qpvUvET0eQlDJ+jPk66TNTAvQCR0ToZJnHEHXhmJySOF3H" +
+        "Tzky4HA1hYAMNVjDM7BceCc5QsmReqnd6MdxcwIDAQAB";
+
     public const string GEM_PACK_1          = "com.narin.gempack1";
     public const string HERO_1              = "com.narin.hero1" ;
     public const string VIP_ALIAS           = "com.narin.vip";
