@@ -73,7 +73,8 @@ namespace Narin.Unity.IAP {
             #endif
 
             #if _dev_ || _myket_
-            //Build Myket Manager
+            ret = mono.gameObject.AddComponent<MyketIAPManager>();
+            ((MyketIAPManager)ret).SetData(_publicKeys[Store.Myket], _products);
             #endif
             
             #if _dev_ || _googleplay_
