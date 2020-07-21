@@ -1,22 +1,22 @@
-﻿#if _dev_ || _cafebazaar_
+﻿#if _dev_ || _myket_
 
-using System.Collections.Generic;
-using UnityEngine;
-using BazaarPlugin;
 using System;
+using UnityEngine;
+using MyketPlugin;
+using System.Collections.Generic;
 
 namespace Narin.Unity.IAP {
     public partial class IAPBuilder {
 
-        private class BazaarIAPManager : SingletonMono<BazaarIAPManager>, IIAPManager {
+        private class MyketIAPManager : SingletonMono<MyketIAPManager>, IIAPManager {
             public event EventHandler<EventArgs>                    OnPurchaseSupported;
             public event EventHandler<ErrorEventArgs>               OnPurchaseNotSupported;
             public event EventHandler<PurchaseEventArgs>            OnPurchaseSucceeded;
             public event EventHandler<ErrorEventArgs>               OnPurchaseFailed;
-            public event EventHandler<PurchaseEventArgs>            OnConsumeSucceeded;
-            public event EventHandler<ErrorEventArgs>               OnConsumeFailed;
             public event EventHandler<QuerySkuInfoEventArgs>        OnQuerySkuInfoSucceeded;
             public event EventHandler<ErrorEventArgs>               OnQuerySkuInfoFailed;
+            public event EventHandler<PurchaseEventArgs>            OnConsumeSucceeded;
+            public event EventHandler<ErrorEventArgs>               OnConsumeFailed;
             public event EventHandler<QueryNotConsumedEventArgs>    OnQueryNotConsumedPurchasesSucceeded;
             public event EventHandler<ErrorEventArgs>               OnQueryNotConsumedPurchasesFailed;
 
@@ -25,26 +25,26 @@ namespace Narin.Unity.IAP {
 
             void OnEnable() {
                 IABEventManager.billingSupportedEvent           += BillingSupportedEventHandler;
-                IABEventManager.billingNotSupportedEvent        += BillingNotSupportedEventHandler;
-                IABEventManager.purchaseSucceededEvent          += PurchaseSucceededEventHandler;
-                IABEventManager.purchaseFailedEvent             += PurchaseFailedEventHandler;
-                IABEventManager.consumePurchaseSucceededEvent   += ConsumePurchaseSucceededEventHandler;
-                IABEventManager.consumePurchaseFailedEvent      += ConsumePurchaseFailedEventHandler;
+		        IABEventManager.billingNotSupportedEvent        += BillingNotSupportedEventHandler;
                 IABEventManager.querySkuDetailsSucceededEvent   += QuerySkuDetailsSucceededEventHandler;
                 IABEventManager.querySkuDetailsFailedEvent      += QuerySkuDetailsFailedEventHandler;
+                IABEventManager.purchaseSucceededEvent          += PurchaseSucceededEventHandler;
+		        IABEventManager.purchaseFailedEvent             += PurchaseFailedEventHandler;
+		        IABEventManager.consumePurchaseSucceededEvent   += ConsumePurchaseSucceededEventHandler;
+		        IABEventManager.consumePurchaseFailedEvent      += ConsumePurchaseFailedEventHandler;
                 IABEventManager.queryPurchasesSucceededEvent    += QueryPurchasesSucceededEventHandler;
                 IABEventManager.queryPurchasesFailedEvent       += QueryPurchasesFailedEventHandler;
             }
 
             void OnDisable() {
                 IABEventManager.billingSupportedEvent           -= BillingSupportedEventHandler;
-                IABEventManager.billingNotSupportedEvent        -= BillingNotSupportedEventHandler;
-                IABEventManager.purchaseSucceededEvent          -= PurchaseSucceededEventHandler;
-                IABEventManager.purchaseFailedEvent             -= PurchaseFailedEventHandler;
-                IABEventManager.consumePurchaseSucceededEvent   -= ConsumePurchaseSucceededEventHandler;
-                IABEventManager.consumePurchaseFailedEvent      -= ConsumePurchaseFailedEventHandler;
+		        IABEventManager.billingNotSupportedEvent        -= BillingNotSupportedEventHandler;
                 IABEventManager.querySkuDetailsSucceededEvent   -= QuerySkuDetailsSucceededEventHandler;
                 IABEventManager.querySkuDetailsFailedEvent      -= QuerySkuDetailsFailedEventHandler;
+                IABEventManager.purchaseSucceededEvent          -= PurchaseSucceededEventHandler;
+		        IABEventManager.purchaseFailedEvent             -= PurchaseFailedEventHandler;
+		        IABEventManager.consumePurchaseSucceededEvent   -= ConsumePurchaseSucceededEventHandler;
+		        IABEventManager.consumePurchaseFailedEvent      -= ConsumePurchaseFailedEventHandler;
                 IABEventManager.queryPurchasesSucceededEvent    -= QueryPurchasesSucceededEventHandler;
                 IABEventManager.queryPurchasesFailedEvent       -= QueryPurchasesFailedEventHandler;
             }
@@ -56,23 +56,23 @@ namespace Narin.Unity.IAP {
 
             #region _iap_api_
             public void Init() {
-                BazaarIAB.init(_publicKey);
+                MyketIAB.init(_publicKey);
             }
 
             public void QuerySkuInfo(string[] productIds) {
-                BazaarIAB.querySkuDetails(FilterAlias(productIds));
+                MyketIAB.querySkuDetails(FilterAlias(productIds));
             }
 
             public void PurchaseProduct(string productId) {
-                BazaarIAB.purchaseProduct(FilterAlias(productId));
+                MyketIAB.purchaseProduct(FilterAlias(productId));
             }
-        
+
             public void ConsumeProduct(string productId) {
-                BazaarIAB.consumeProduct(FilterAlias(productId));
+                MyketIAB.consumeProduct(FilterAlias(productId));
             }
-        
+
             public void QueryNotConsumedPurchases() {
-                BazaarIAB.queryPurchases();
+                MyketIAB.queryPurchases();
             }
             #endregion
 
@@ -87,7 +87,7 @@ namespace Narin.Unity.IAP {
                     OnPurchaseNotSupported(this, new ErrorEventArgs(error));
             }
 
-            private void QuerySkuDetailsSucceededEventHandler(List<BazaarSkuInfo> skusInfo) {
+            private void QuerySkuDetailsSucceededEventHandler(List<MyketSkuInfo> skusInfo) {
                 List<ProductDetail> ret = new List<ProductDetail>(skusInfo.Count);
 
                 if(null != skusInfo && skusInfo.Count != 0) {
@@ -113,7 +113,7 @@ namespace Narin.Unity.IAP {
                 }
             }
 
-            private void PurchaseSucceededEventHandler(BazaarPurchase purchaseResult) {
+            private void PurchaseSucceededEventHandler(MyketPurchase purchaseResult) {
                 if(null != OnPurchaseSucceeded) {
                     OnPurchaseSucceeded(this, new PurchaseEventArgs(
                          purchaseResult.DeveloperPayload
@@ -131,7 +131,7 @@ namespace Narin.Unity.IAP {
                 }
             }
 
-            private void ConsumePurchaseSucceededEventHandler(BazaarPurchase purchase) {
+            private void ConsumePurchaseSucceededEventHandler(MyketPurchase purchase) {
                 if(null != OnConsumeSucceeded) {
                          OnConsumeSucceeded(this, new PurchaseEventArgs(
                          purchase.DeveloperPayload
@@ -149,7 +149,7 @@ namespace Narin.Unity.IAP {
                 }
             }
 
-            private void QueryPurchasesSucceededEventHandler(List<BazaarPurchase> purchases) {
+            private void QueryPurchasesSucceededEventHandler(List<MyketPurchase> purchases) {
                 if(null != OnConsumeSucceeded) {
                     List<PurchaseEventArgs> ret = new List<PurchaseEventArgs>(purchases.Count);
                     purchases.ForEach((p)=> {
@@ -200,5 +200,4 @@ namespace Narin.Unity.IAP {
         }
     }
 }
-
 #endif

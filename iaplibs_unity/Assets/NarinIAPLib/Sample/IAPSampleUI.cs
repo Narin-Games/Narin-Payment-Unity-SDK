@@ -76,7 +76,7 @@ public class IAPSampleUI : MonoBehaviour
     }
 
     private void OnQuerySkuInfoSucceededHandler(object sender, QuerySkuInfoEventArgs skus) {
-        string log = "";
+        string log = "On Query Sku Info Succeeded: \n";
         
         for (int i=0; i<skus.SkusInfo.Count; ++i) {
             log +=
@@ -102,11 +102,12 @@ public class IAPSampleUI : MonoBehaviour
 
     private void OnPurchaseSucceededHandler(object sender, PurchaseEventArgs purchase) {
         string log = 
-            "ProductId: "           + purchase.ProductId                                + '\n' + 
-            "Type: "                + purchase.Type.ToString()                          + '\n' +
-            "PackageName: "         + NBidi.NBidi.LogicalToVisual(purchase.PackageName) + '\n' +
-            "Purchase Token: "      + purchase.PurchaseToken                            + '\n' +
-            "DeveloperPayload: "    + purchase.DeveloperPayload                         + '\n' +
+            "On Purchase Succeeded: "   +
+            "ProductId: "               + purchase.ProductId                                + '\n' + 
+            "Type: "                    + purchase.Type.ToString()                          + '\n' +
+            "PackageName: "             + NBidi.NBidi.LogicalToVisual(purchase.PackageName) + '\n' +
+            "Purchase Token: "          + purchase.PurchaseToken                            + '\n' +
+            "DeveloperPayload: "        + purchase.DeveloperPayload                         + '\n' +
             "";
 
         Debug.Log(log);
@@ -121,11 +122,12 @@ public class IAPSampleUI : MonoBehaviour
 
     private void OnConsumeSucceededHandler(object sender, PurchaseEventArgs purchase) {
         string log = 
-            "ProductId: "           + purchase.ProductId                                + '\n' + 
-            "Type: "                + purchase.Type.ToString()                          + '\n' +
-            "PackageName: "         + NBidi.NBidi.LogicalToVisual(purchase.PackageName) + '\n' +
-            "Purchase Token: "      + purchase.PurchaseToken                            + '\n' +
-            "DeveloperPayload: "    + purchase.DeveloperPayload                         + '\n' +
+            "On Consume Purchase Succeded: "+
+            "ProductId: "                   + purchase.ProductId                                + '\n' + 
+            "Type: "                        + purchase.Type.ToString()                          + '\n' +
+            "PackageName: "                 + NBidi.NBidi.LogicalToVisual(purchase.PackageName) + '\n' +
+            "Purchase Token: "              + purchase.PurchaseToken                            + '\n' +
+            "DeveloperPayload: "            + purchase.DeveloperPayload                         + '\n' +
             "";
 
         Debug.Log(log);
@@ -140,9 +142,13 @@ public class IAPSampleUI : MonoBehaviour
 
     private void OnQueryNotConsumedPurchasesSucceededHandler(object sender, QueryNotConsumedEventArgs purchases) {
         var purchaseList = purchases.Purchases;
-        string log = "You have no not consumed purchases";
+        string log = "On Query Not Consumed Purchases Succeeded: \n";
+
+        if(0 == purchaseList.Count)
+            log += "You have no not consumed purchases";
+
         for(int i=0; i<purchaseList.Count; ++i) {
-            log += 
+            log +=
                 "Idx: "                 + i                                                         + '\n' +
                 "ProductId: "           + purchaseList[i].ProductId                                 + '\n' +
                 "Type: "                + purchaseList[i].Type.ToString()                           + '\n' +
@@ -151,12 +157,15 @@ public class IAPSampleUI : MonoBehaviour
                 "DeveloperPayload: "    + purchaseList[i].DeveloperPayload                          + '\n' +
                 "";
         }
+
         Debug.Log(log);
         _txtResult.text = log;
     }
 
     private void OnQueryNotConsumedPurchasesFailedHandler(object sender, ErrorEventArgs error) {
-        throw new NotImplementedException();
+        string log = "On Query Not Consumed Purchases Failed: " + error.Message;
+        Debug.Log(log);
+        _txtResult.text = log;
     }
     #endregion
 }

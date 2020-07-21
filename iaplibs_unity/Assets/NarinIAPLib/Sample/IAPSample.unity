@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 506136277}
   - component: {fileID: 506136276}
   m_Layer: 5
-  m_Name: btn_RetriveFailedPurchases
+  m_Name: btn_QueryNotConsumedPurchases
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -248,7 +248,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 87907856}
-        m_MethodName: RetrieveFailedPurchases_OnClick
+        m_MethodName: QueryNotConsumedPurchases_OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1398,7 +1398,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Retrive Failed Purchases
+  m_Text: Query Not Consumed Purchases
 --- !u!222 &1501375147
 CanvasRenderer:
   m_ObjectHideFlags: 0
