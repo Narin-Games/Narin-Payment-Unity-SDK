@@ -129,7 +129,7 @@ public class IAPSampleUI : MonoBehaviour {
 }
 ```
 
-### 3) User API:
+### 3) Use IAP Methods:
 After successfully initializing, You can now use all IIAPManager methods. The list of these methods and Event Listeners is written below.
 
 ### Methods:
@@ -190,5 +190,27 @@ event EventHandler<ErrorEventArgs>              OnQueryNotConsumedPurchasesFaile
 
 ```
 
-## Sample:
+## Sample
 In the [Sample Directory](https://github.com/Narin-Games/Narin-Payment-Unity-SDK/tree/master/iaplibs_unity/Assets/NarinIAPLib/Sample) there is a complete example of how to use the SDK that you can use.
+
+## Build and Export Project
+
+You need to do the following two steps before export build from your project:
+
+### 1) Set Scripting Define Symbols:
+First, go to the following path in the Unity engine:
+
+**File > Build Settings > Player Settings > Player > Other Settings > Scripting Define Symbols**
+
+![unity-scripting-define-symbols]()
+
+Then in this path, define the specific symbol of that store according to the table:
+
+| Store         | Symbole       |
+| :--:          | :--:          |
+| GooglePlay    | \_googleplay_ |
+| Cafebazaar    | \_cafebazaar_ |
+| myket         | \_myket_      |
+
+
+This step causes only the code related to that store to be used in your final build.
