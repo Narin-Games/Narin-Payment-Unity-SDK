@@ -1,10 +1,10 @@
 # Narin-Payment-Unity-SDK
-This SDK is implemented for the integration payment method of online app stores (Googleplay, Cafebazaar, Myket) as a single interface.
+This SDK is implemented for the integration of online app stores payment methods (Googleplay, Cafebazaar, Myket) as a single interface.
 
 If you want to release your game in multiple app stores, this SDK will have the following advantages for you:
 
-- No need to create different branches in git to get the build of each store
-- Implement payment of all stores with just one implementation
+- No need to create different branches in git to get the build for each store
+- Implements payment of all stores with just one implementation
 - Can be used in implementation of **Distributed Build System** and **Batch Building**
 
 ## How To Use
@@ -13,7 +13,7 @@ This system has three stages in its life cycle, which I will explain in order:
 **BUILD --> Initialize --> Use IAP Methods**
 
 ### 1) Build:
-In this step you need to create an object of type IIAPManager through the IAPBuilder class To access the store payment API through this object.
+In this step you need to create an object of type IIAPManager through the IAPBuilder class to access the store payment API through this object.
 
 You must first provide payment information to the IAPBuilder class, as in the following code example:
 
@@ -70,7 +70,7 @@ public class IAPSample : MonoBehaviour {
 ```
 **Notice 1-1:**
 
-The Build stage only needs to happen once when the game is run. and after calling **IAPBuilder.AttachAndBuild()**, you create a IAPManager component whose reference is stored in the static variable **IAPBuilder.CurrentIAPManager** and all the information entered about the store is reset in the IAPBuilder object.
+The build stage only needs to happen once when the game is running. and after calling **IAPBuilder.AttachAndBuild()**, you need to create an IAPManager component whom reference is stored in the static variable **IAPBuilder.CurrentIAPManager** and all the information entered about the store is reset in the IAPBuilder object.
 
 ``` csharp
 //This static variable is set after calling IAPBuilder.BuildAndAttach()
@@ -130,7 +130,7 @@ public class IAPSampleUI : MonoBehaviour {
 ```
 
 ### 3) Use IAP Methods:
-After successfully initializing, You can now use all IIAPManager methods. The list of these methods and Event Listeners is written below.
+After successfully initializing, you can now use all IIAPManager methods. The list of these methods and Event Listeners is written below.
 
 ### Methods:
 
@@ -195,7 +195,7 @@ In the [Sample Directory](https://github.com/Narin-Games/Narin-Payment-Unity-SDK
 
 ## Build and Export Project
 
-You need to do the following two steps before export build from your project:
+You need to do the following two steps before exporting build from your project:
 
 ### 1) Set Scripting Define Symbols:
 First, go to the following path in the Unity engine:
